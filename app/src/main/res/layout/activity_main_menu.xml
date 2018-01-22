@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/background_dark"
+    tools:context="com.fiki.app.wifi.wifidocumentation.src.domain.activitives.MainMenuActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Main Menu"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/background_light"
+        android:textSize="30dp"
+        android:textStyle="bold"/>
+    <Button
+        android:id="@+id/mainMenuActSavEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/arrows"
+        android:elevation="11dp"
+        android:text="Set Email"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <Button
+        android:id="@+id/MainMenuActAddData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/arrows"
+        android:elevation="5dp"
+        android:text="Add Data"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <Button
+        android:id="@+id/MainMenuActListData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/arrows"
+        android:elevation="11dp"
+        android:text="Show list"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <Button
+        android:id="@+id/MainMenuActListData2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/arrows"
+        android:elevation="11dp"
+        android:text="List"
+        android:textColor="@android:color/white"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="47dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <!--<Button-->
+        <!--android:id="@+id/button3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:background="@drawable/arrows"-->
+        <!--android:elevation="11dp"-->
+        <!--android:text="Button"-->
+        <!--tools:layout_editor_absoluteX="47dp"-->
+        <!--tools:layout_editor_absoluteY="25dp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/button"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/arrows"-->
+        <!--android:elevation="11dp"-->
+        <!--android:text="Button"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--tools:layout_editor_absoluteX="47dp"-->
+        <!--tools:layout_editor_absoluteY="25dp" />-->
+
+</LinearLayout>

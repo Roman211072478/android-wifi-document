@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fiki.app.wifi.wifidocumentation">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <supports-screens android:xlargeScreens="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".SetEmailAct"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+
+        <service
+            android:name=".src.domain.services.email.EmailCrudService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".src.domain.services.email.EmailFindService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".src.domain.services.mydata.MyDataCudService"
+            android:exported="false" />
+        <service
+            android:name=".src.domain.services.mydata.MyDataFindService"
+            android:exported="false" />
+
+        <activity
+            android:name=".src.domain.activitives.MyDataList"
+            android:screenOrientation="landscape" />
+        <activity android:name=".src.domain.activitives.MainMenuActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".src.domain.activitives.EmailMe" />
+        <activity android:name=".src.domain.activitives.PutOutData" />
+
+        <service
+            android:name=".src.domain.services.receipt.RecieptCrudService"
+            android:exported="false" />
+        <service
+            android:name=".src.domain.services.receipt.ReceiptFindService"
+            android:exported="false"></service>
+    </application>
+
+</manifest>

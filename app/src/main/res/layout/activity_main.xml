@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    tools:context="com.fiki.app.wifi.wifidocumentation.MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Mac address"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/txtMacAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:inputType="text"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="31dp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Location:"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/txtLocation_ip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:inputType="text"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="94dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Serial No:"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/txtSerialNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:inputType="text"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="172dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Port No"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/txtPortNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:inputType="text"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="244dp" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Switch No:"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/txtSwitchNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/background_light"
+                android:ems="10"
+                android:inputType="text"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="321dp" />
+
+            <Button
+                android:id="@+id/btnSend"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/holo_green_dark"
+                android:elevation="7dp"
+                android:text="send"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="411dp" />
+
+            <Button
+                android:id="@+id/btnEditData"
+                android:layout_width="199dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorPrimaryDark"
+                android:elevation="7dp"
+                android:text="Edit"
+                android:textColor="@android:color/background_light"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="411dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
