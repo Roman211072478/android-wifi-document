@@ -51,24 +51,14 @@ public class MainMenuActivity extends AppCompatActivity implements ServiceResult
                 startService(service);
             }
         });
-//        btnAddData.setEnabled(false);
 
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, PutOutData.class);
-//                Intent intent = new Intent(MainMenuActivity.this, MyDataList.class);
                 startActivity(intent);
             }
         });
-//        btnList2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(MainMenuActivity.this, MyDataList.class);
-//                startActivity(intent);
-//            }
-//        });
 
         btnSetEmail.setOnClickListener(new View.OnClickListener() {
             @Override

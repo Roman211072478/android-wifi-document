@@ -1,8 +1,8 @@
 package com.fiki.app.wifi.wifidocumentation;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,7 +25,7 @@ import com.fiki.app.wifi.wifidocumentation.src.domain.model.ResultDTO;
 import com.fiki.app.wifi.wifidocumentation.src.domain.receiver.ServiceResultReceiver;
 import com.fiki.app.wifi.wifidocumentation.src.domain.services.mydata.MyDataCudService;
 
-public class MainActivity extends AppCompatActivity implements ServiceResultReceiver.Receiver{
+public class MainActivity extends Activity implements ServiceResultReceiver.Receiver{
 
     private Button sendBtn,editBtn;
     private EditText txtMacAddress, txtPortNo, txtSerialNo, txtSwitchNo,txtLocation;

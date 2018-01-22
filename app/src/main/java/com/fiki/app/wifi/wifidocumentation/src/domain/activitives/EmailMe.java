@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
-import com.fiki.app.wifi.wifidocumentation.MainActivity;
 import com.fiki.app.wifi.wifidocumentation.R;
 import com.fiki.app.wifi.wifidocumentation.src.domain.confi.StringValues;
 import com.fiki.app.wifi.wifidocumentation.src.domain.model.EmailDetails;
@@ -58,21 +57,26 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class EmailMe extends Activity  implements EasyPermissions.PermissionCallbacks,ServiceResultReceiver.Receiver {
 
+    //Components
     private Button btnSend;
-    GoogleAccountCredential mCredential;
-    private TextView mOutputNotic,tvOuput,tvMyEmail;
+    private TextView myOutputNotic,tvOuput,tvMyEmail;
     private EditText txSubject,txBcc;
     private AutoCompleteTextView txToEmail;
 
+    //library object
+    GoogleAccountCredential myCredential;
+
     ProgressDialog myProgress;
 
+    //Things taken from web which is needed
     static final int REQUEST_ACCOUNT_PICKER = 1000;
     static final int REQUEST_AUTHORIZATION = 1001;
     static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
     static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
 
-    private static String PREF_ACCOUNT_NAME = "";
-//    private static final String[] SCOPES = {GmailScopes.GMAIL_LABELS};
+
+    //Variables and objects
+    private static String ACCOUNT_NAME = "";
     private Intent chooser;
     private MyData emailData;
     private ServiceResultReceiver receiver;
@@ -80,16 +84,18 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
     private String choice = "";
     private String[] emailList;
 
+    //where startService is called, do remember that all the returned outcomes is handled in the onRecieveResult override method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_me);
-        Bundle bundle = getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras(); // get values passed from previous object
 
+        //my custom made result receiver
         receiver = new ServiceResultReceiver(new Handler());
         receiver.setReceiver(this);
 
-        //get email sending email address
+        //call my email find services
         Intent service = new Intent(EmailMe.this, EmailFindService.class);
         service.putExtra("requestTag", StringValues.requestText.FIND_ALL);
         service.putExtra("dtoTag", emailObject);
@@ -119,7 +125,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
                     //bbc not needed
                     if(checkIfTheIsBcc())
                     {
-                        String[] bcc ={txBcc.getText().toString()};//list to who||the main receiver wont see this
+                        String[] bcc ={txBcc.getText().toString()};//list to who||the main receiver won't see this
                         intent.putExtra(Intent.EXTRA_BCC,bcc); //xml
                     }
 
@@ -140,7 +146,8 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
 
     private void setAutoForTo()
     {
-        String[] emailStringList = { "aa","ass","Java","C","PHP","fikrea","jQ"};
+        //cool feature
+        //this will set the auto-correct while inserting your email or email list you have used before
 
         if(emailList == null)
         {
@@ -156,6 +163,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         }
     }
 
+    //used to save data
     private void saveEmails() {
         ReceipentsModel emailStuff = new ReceipentsModel.Builder()
                 .email(txToEmail.getText().toString())
@@ -167,6 +175,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         startService(service);
         choice = "emailList";
     }
+    //returns email receipts
     private void findAllList()
     {
        try {
@@ -195,6 +204,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         }
     }
 
+    //common validation
     private boolean validation() {
 
         if(txToEmail.getText().toString().trim().equals("") || txSubject.getText().toString().trim().equals(""))
@@ -209,9 +219,10 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         return false;
     }
 
+    //initializing components
     private void initCompon() {
 
-       mOutputNotic = (TextView)findViewById(R.id.textView15email_me_notifi);
+       myOutputNotic = (TextView)findViewById(R.id.textView15email_me_notifi);
         tvOuput = (TextView)findViewById(R.id.email_me_output);
         tvMyEmail = (TextView)findViewById(R.id.email_me_myemail);
         txSubject = (EditText) findViewById(R.id.email_me_subject);
@@ -221,6 +232,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         tvOuput.setText(setBody().toString());
     }
 
+    //this would be the body of the email. Change/modify this for better outcomes in emails
     private String setBody()
     {
         String str = "Mac Address: "+emailData.getMacAddress()+
@@ -234,6 +246,8 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
+
+        //Handle results of finished  services.
 
         ResultDTO resultDTOFound = null;
         resultDTOFound = (ResultDTO) resultData.getSerializable("ServiceTag");
@@ -258,11 +272,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
                         tempString[i] = object.getEmail();
                     }
 
-//                    if(resultDTOFound.getResult().size() == 0)
-//                    {
-//                        emailList = new String[1];
-//                        emailList[0] = "";
-//                    }
+
                     emailList = tempString;
 
                     setAutoCorrect();
@@ -280,9 +290,9 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
                 else{
                     emailObject = (EmailDetails) resultDTOFound.getResult().get(0);
 
-                    PREF_ACCOUNT_NAME = emailObject.getEmail();
+                    ACCOUNT_NAME = emailObject.getEmail();
 
-                    tvMyEmail.setText(PREF_ACCOUNT_NAME);
+                    tvMyEmail.setText(ACCOUNT_NAME);
 
                     findAllList();
                 }
@@ -296,15 +306,16 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
     }
 
 
+    //everything below was used for using the api, which should not apply..
     private void getResultsFromApi() {
         if (!isGooglePlayServicesAvailable()) {
             acquireGooglePlayServices();
-        } else if (mCredential.getSelectedAccountName() == null) {
+        } else if (myCredential.getSelectedAccountName() == null) {
             chooseAccount();
         } else if (!isDeviceOnline()) {
-            mOutputNotic.setText("No network connection available.");
+            myOutputNotic.setText("No network connection available.");
         } else {
-            new MakeRequestTask(mCredential).execute();
+            new MakeRequestTask(myCredential).execute();
         }
     }
 
@@ -313,14 +324,14 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         if (EasyPermissions.hasPermissions(
                 this, Manifest.permission.GET_ACCOUNTS)) {
             String accountName = getPreferences(Context.MODE_PRIVATE)
-                    .getString(PREF_ACCOUNT_NAME, null);
+                    .getString(ACCOUNT_NAME, null);
             if (accountName != null) {
-                mCredential.setSelectedAccountName(accountName);
+                myCredential.setSelectedAccountName(accountName);
                 getResultsFromApi();
             } else {
                 // Start a dialog from which the user can choose an account
                 startActivityForResult(
-                        mCredential.newChooseAccountIntent(),
+                        myCredential.newChooseAccountIntent(),
                         REQUEST_ACCOUNT_PICKER);
             }
         } else {
@@ -340,7 +351,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         switch (requestCode) {
             case REQUEST_GOOGLE_PLAY_SERVICES:
                 if (resultCode != RESULT_OK) {
-                    mOutputNotic.setText(
+                    myOutputNotic.setText(
                             "This app requires Google Play Services. Please install " +
                                     "Google Play Services on your device and relaunch this app.");
                 } else {
@@ -356,9 +367,9 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
                         SharedPreferences settings =
                                 getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = settings.edit();
-                        editor.putString(PREF_ACCOUNT_NAME, accountName);
+                        editor.putString(ACCOUNT_NAME, accountName);
                         editor.apply();
-                        mCredential.setSelectedAccountName(accountName);
+                        myCredential.setSelectedAccountName(accountName);
                         getResultsFromApi();
                     }
                 }
@@ -467,7 +478,7 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
 
         @Override
         protected void onPreExecute() {
-            mOutputNotic.setText("");
+            myOutputNotic.setText("");
             myProgress.show();
         }
 
@@ -475,10 +486,10 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
         protected void onPostExecute(List<String> output) {
             myProgress.hide();
             if (output == null || output.size() == 0) {
-                mOutputNotic.setText("No results returned.");
+                myOutputNotic.setText("No results returned.");
             } else {
                 output.add(0, "Data retrieved using the Gmail API:");
-                mOutputNotic.setText(TextUtils.join("\n", output));
+                myOutputNotic.setText(TextUtils.join("\n", output));
             }
         }
 
@@ -495,11 +506,11 @@ public class EmailMe extends Activity  implements EasyPermissions.PermissionCall
                             ((UserRecoverableAuthIOException) mLastError).getIntent(),
                             EmailMe.REQUEST_AUTHORIZATION);
                 } else {
-                    mOutputNotic.setText("The following error occurred:\n"
+                    myOutputNotic.setText("The following error occurred:\n"
                             + mLastError.getMessage());
                 }
             } else {
-                mOutputNotic.setText("Request cancelled.");
+                myOutputNotic.setText("Request cancelled.");
             }
 
 

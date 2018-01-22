@@ -1,5 +1,6 @@
 package com.fiki.app.wifi.wifidocumentation;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,7 @@ import com.fiki.app.wifi.wifidocumentation.src.domain.services.email.EmailFindSe
 
 import java.util.HashMap;
 
-public class SetEmailAct extends AppCompatActivity implements ServiceResultReceiver.Receiver {
+public class SetEmailAct extends Activity implements ServiceResultReceiver.Receiver {
 
     Button btnSave,setBtn,cancBtn;
     LinearLayout editView,currentView;
